@@ -24,6 +24,31 @@ read -p "Press any key to continue or Ctrl-C to exit..." -n1 -s
 echo -e "\n"
 echo "Starting..."
 
+
+# check distro
+
+ if cat /etc/*release | grep ^NAME | grep CentOS; then
+    echo "on CentOS"
+ elif cat /etc/*release | grep ^NAME | grep Red; then
+    echo "on RedHat"
+ elif cat /etc/*release | grep ^NAME | grep Fedora; then
+    echo "on Fedorea"
+ elif cat /etc/*release | grep ^NAME | grep Ubuntu; then
+    echo "on Ubuntu"
+ elif cat /etc/*release | grep ^NAME | grep Debian ; then
+    echo "on Debian"
+ elif cat /etc/*release | grep ^NAME | grep Mint ; then
+    echo "on Mint"
+ else
+    echo "OS NOT DETECTED, couldn't install package $PACKAGE"
+    exit 1;
+ fi
+
+if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
+   # do stuff
+fi
+
+
 # create backup directory, -p eliminates warning if directory exists
 mkdir -p $BAKDIR
 
